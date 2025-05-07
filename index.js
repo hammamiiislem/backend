@@ -3,6 +3,12 @@ const dotenv=require('dotenv');
 const connectDB=require('./configuration/mongodb'); 
 const userRoute=require('./routes/routes');
 const app=express();
+const cors=require('cors');
+app.use(cors({
+    origin:'http://localhost:3001',
+    methods:['GET','POST','PUT','DELETE'],
+    credentials:true
+}));
 const port=8080;
 
 

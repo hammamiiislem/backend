@@ -1,3 +1,4 @@
+const bcrypt=require('bcrypt');
 const {User}=require('../moduls/User');
 
 const getAllUsers=async(req,res)=>{
@@ -17,6 +18,7 @@ const AddUser=async(req,res)=>{
         age,
         password
     });
+    user.password=await bcrypt.hash(user.password,10);
     try{
         const savedUser=await user.save();
         res.status(201).json(savedUser);
